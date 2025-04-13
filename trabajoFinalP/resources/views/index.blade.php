@@ -95,26 +95,24 @@
     </style>
 </head>
 <body>
-    <!-- Header con botones -->
     <header>
         <div class="logo">Tienda de electronica TRC</div>
         <div class="nav-buttons">
             <button onclick="window.location.href='{{ route('productos.index') }}'">Productos</button>
             <button onclick="window.location.href='{{ route('ventas.index') }}'">Ventas</button>
+            <button onclick="window.location.href='{{ route('carrito.mostrar') }}'">Carrito</button>
             <button onclick="window.location.href='{{ route('index') }}'">Inicio</button>
         </div>
     </header>
 
-    <!-- Grid de productos -->
     <div class="product-grid">
         @foreach ($productos as $producto)
         <div class="product-card">
-            <!-- Mostrar la imagen directamente desde la URL almacenada en la base de datos -->
             <img src="{{ $producto->imagen_producto }}" alt="{{ $producto->nombre_producto }}">
             <h3>{{ $producto->nombre_producto }}</h3>
             <p>{{ $producto->descripcion_producto }}</p>
             <div class="price">${{ number_format($producto->precio_producto, 2) }}</div>
-            <button onclick="window.location.href='{{ route('productos.index') }}'">Ver Detalles</button>
+            <button onclick="window.location.href='{{ route('productos.show', $producto->id) }}'">Ver Detalles</button>
         </div>
         @endforeach
     </div>

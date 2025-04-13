@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Producto</title>
+    <title>Detalles del Producto</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,34 +12,50 @@
             padding: 0;
         }
         .container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 50px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            font-weight: bold;
-        }
-        .form-group input, .form-group textarea {
+        .product-image {
             width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
         }
-        .button {
+        .product-details {
+            margin-top: 20px;
+        }
+        .product-details h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .product-details p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .product-details .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .product-details .stock {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .product-details form {
+            margin-top: 20px;
+        }
+        .product-details input[type="number"] {
+            width: 100px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .product-details button {
             background-color: #007bff;
             color: white;
             border: none;
@@ -48,7 +64,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .button:hover {
+        .product-details button:hover {
             background-color: #0056b3;
         }
         header {
@@ -94,39 +110,19 @@
         </div>
     </header>
     <div class="container">
-        <div class="title">Agregar Producto</div>
-        <form action="{{ route('productos.store') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="codigo_producto">Código del Producto</label>
-                <input type="text" id="codigo_producto" name="codigo_producto" required>
-            </div>
-            <div class="form-group">
-                <label for="nombre_producto">Nombre del Producto</label>
-                <input type="text" id="nombre_producto" name="nombre_producto" required>
-            </div>
-            <div class="form-group">
-                <label for="descripcion_producto">Descripción</label>
-                <textarea id="descripcion_producto" name="descripcion_producto" rows="3" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="precio_producto">Precio</label>
-                <input type="number" id="precio_producto" name="precio_producto" step="0.01" required>
-            </div>
-            <div class="form-group">
-                <label for="stock_producto">Stock</label>
-                <input type="number" id="stock_producto" name="stock_producto" required>
-            </div>
-            <div class="form-group">
-                <label for="categoria_producto">Categoría</label>
-                <input type="text" id="categoria_producto" name="categoria_producto" required>
-            </div>
-            <div class="form-group">
-                <label for="imagen_producto">Imagen (URL)</label>
-                <input type="text" id="imagen_producto" name="imagen_producto" required>
-            </div>
-            <button type="submit" class="button">Guardar Producto</button>
-        </form>
+        <img src="{{ $producto->imagen_producto }}" alt="{{ $producto->nombre_producto }}" class="product-image">
+        <div class="product-details">
+            <h1>{{ $producto->nombre_producto }}</h1>
+            <p>{{ $producto->descripcion_producto }}</p>
+            <div class="price">Precio: ${{ number_format($producto->precio_producto, 2) }}</div>
+            <div class="stock">Cantidad en stock: {{ $producto->stock_producto }}</div>
+            <form action="{{ route('carrito.agregar', $producto->id) }}" method="POST">
+                @csrf
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" min="1" max="{{ $producto->stock_producto }}" required>
+                <button type="submit">Agregar al Carrito</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

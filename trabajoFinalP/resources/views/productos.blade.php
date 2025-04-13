@@ -57,9 +57,48 @@
             justify-content: center;
             margin-top: 20px;
         }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        header .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        header .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        header .nav-buttons button {
+            background-color: white;
+            color: #007bff;
+            border: none;
+            padding: 8px 15px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        header .nav-buttons button:hover {
+            background-color: #0056b3;
+            color: white;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <div class="logo">Tienda de electronica TRC</div>
+        <div class="nav-buttons">
+            <button onclick="window.location.href='{{ route('productos.index') }}'">Productos</button>
+            <button onclick="window.location.href='{{ route('ventas.index') }}'">Ventas</button>
+            <button onclick="window.location.href='{{ route('carrito.mostrar') }}'">Carrito</button>
+            <button onclick="window.location.href='{{ route('index') }}'">Inicio</button>
+        </div>
+    </header>
 <div class="container">
     <div class="title">Gestión de Productos</div>
 

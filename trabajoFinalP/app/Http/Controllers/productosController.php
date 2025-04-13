@@ -14,6 +14,12 @@ class productosController extends Controller
         return view('productos', compact('productos'));
     }
 
+    public function show($id)
+    {
+        $producto = Producto::findOrFail($id);
+        return view('productos_show', compact('producto'));
+    }
+    
     public function create()
     {
         return view('productos_create');
