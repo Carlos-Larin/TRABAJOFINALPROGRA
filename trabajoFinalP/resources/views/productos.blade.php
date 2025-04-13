@@ -52,57 +52,65 @@
             background-color: #007bff;
             color: white;
         }
+        .actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="title">Gestión de Productos</div>
+<div class="container">
+    <div class="title">Gestión de Productos</div>
 
-        <!-- Botones de acción -->
-        <div>
-            <button class="button" onclick="window.location.href='{{ route('productos.create') }}'">Agregar Producto</button>
-        </div>
+    <!-- Tabla de productos -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Categoría</th>
+                <th>Imagen</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($productos as $producto)
+            <tr>
+                <td>{{ $producto->id }}</td>
+                <td>{{ $producto->codigo_producto }}</td>
+                <td>{{ $producto->nombre_producto }}</td>
+                <td>{{ $producto->descripcion_producto }}</td>
+                <td>${{ number_format($producto->precio_producto, 2) }}</td>
+                <td>{{ $producto->stock_producto }}</td>
+                <td>{{ $producto->categoria_producto }}</td>
+                <td>
+                    <img src="{{ asset('images/' . $producto->imagen_producto) }}" alt="Imagen" style="width: 50px; height: 50px;">
+                </td>
+                <td>
+                    <button class="button" onclick="window.location.href='{{ route('productos.edit', $producto->id) }}'">Editar</button>
+                    <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button class="button" style="background-color: #dc3545;" onclick="return confirm('¿Estás seguro de eliminar este producto?')">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 
-        <!-- Tabla de productos -->
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Código</th>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                    <th>Categoría</th>
-                    <th>Imagen</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($productos as $producto)
-                <tr>
-                    <td>{{ $producto->id }}</td>
-                    <td>{{ $producto->codigo_producto }}</td>
-                    <td>{{ $producto->nombre_producto }}</td>
-                    <td>{{ $producto->descripcion_producto }}</td>
-                    <td>${{ number_format($producto->precio_producto, 2) }}</td>
-                    <td>{{ $producto->stock_producto }}</td>
-                    <td>{{ $producto->categoria_producto }}</td>
-                    <td>
-                        <img src="{{ asset('images/' . $producto->imagen_producto) }}" alt="Imagen" style="width: 50px; height: 50px;">
-                    </td>
-                    <td>
-                        <button class="button" onclick="window.location.href='{{ route('productos.edit', $producto->id) }}'">Editar</button>
-                        <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button class="button" style="background-color: #dc3545;" onclick="return confirm('¿Estás seguro de eliminar este producto?')">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <!-- Botón para ir al formulario de creación -->
+    <div class="actions">
+        <button class="button" onclick="window.location.href='{{ route('productos.create') }}'">Ingresar Producto</button>
     </div>
+    <div class="index" style="text-align: center; margin-top: 20px;">
+        <button class="button" onclick="window.location.href='{{ route('index') }}'">menu</button>
+    </div>
+</div>
 </body>
 </html>

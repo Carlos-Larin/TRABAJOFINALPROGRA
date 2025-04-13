@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Producto;
 
 class productosController extends Controller
 {
@@ -17,7 +18,6 @@ class productosController extends Controller
     {
         return view('productos_create');
     }
-
     public function store(Request $request)
     {
         $request->validate([
