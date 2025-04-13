@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('codigo_venta', 50)->unique();
             $table->unsignedBigInteger('id_cliente');
             $table->unsignedBigInteger('id_producto');
-            $table->integer('cantidad_producto');
+            $table->integer('cantidad_producto')->unsigned();
             $table->decimal('total_venta', 10, 2);
             $table->date('fecha_venta');            
             $table->timestamps();
