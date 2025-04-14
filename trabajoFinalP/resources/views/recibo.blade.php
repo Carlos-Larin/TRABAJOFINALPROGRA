@@ -82,7 +82,6 @@
         </table>
     </div>
 
-    <!-- Tabla de productos -->
     <table class="table">
         <thead>
             <tr>
@@ -113,7 +112,6 @@
         </tbody>
     </table>
 
-    <!-- Total -->
     <div class="total">
         <p>Total a Pagar: ${{ number_format($total_vendido, 2) }}</p>
     </div>
