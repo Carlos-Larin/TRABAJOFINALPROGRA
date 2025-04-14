@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\productosController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\VentasController;
 
 Route::get('/', function () {
     return view('index');
@@ -29,3 +30,9 @@ Route::post('carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name
 Route::get('carrito', [CarritoController::class, 'mostrar'])->name('carrito.mostrar');
 Route::put('carrito/modificar/{id}', [CarritoController::class, 'modificar'])->name('carrito.modificar');
 Route::delete('carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+
+//controlador de ventas
+Route::post('ventas', [VentasController::class, 'store'])->name('ventas.store');
+Route::get('ventas', [VentasController::class, 'index'])->name('ventas.index');
+Route::post('ventas/generar-recibo', [VentasController::class, 'generarRecibo'])->name('ventas.generarRecibo');
+Route::delete('ventas/{id}', [VentasController::class, 'destroy'])->name('ventas.destroy');

@@ -39,12 +39,14 @@ class CarritoController extends Controller
     public function modificar(Request $request, $id)
     {
         $carrito = session()->get('carrito', []);
-
         if (isset($carrito[$id])) {
+            $producto = \App\Models\Producto::findOrFail($id);
+            $producto->stock_producto += $carrito[$id]['cantidad'];
+            $producto->stock_producto -= $request->cantidad;
+            $producto->save();
             $carrito[$id]['cantidad'] = $request->cantidad;
             session()->put('carrito', $carrito);
         }
-
         return redirect()->route('carrito.mostrar')->with('success', 'Cantidad actualizada correctamente.');
     }
 
@@ -53,10 +55,13 @@ class CarritoController extends Controller
         $carrito = session()->get('carrito', []);
 
         if (isset($carrito[$id])) {
+            $producto = \App\Models\Producto::findOrFail($id);
+            $producto->stock_producto += $carrito[$id]['cantidad'];
+            $producto->save();
             unset($carrito[$id]);
             session()->put('carrito', $carrito);
         }
-
+    
         return redirect()->route('carrito.mostrar')->with('success', 'Producto eliminado del carrito.');
     }
 }

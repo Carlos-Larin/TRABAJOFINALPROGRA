@@ -104,6 +104,26 @@
             <button onclick="window.location.href='{{ route('index') }}'">Inicio</button>
         </div>
     </header>
+    <form action="{{ route('ventas.generarRecibo') }}" method="POST">
+        @csrf
+        <div>
+            <label for="nombre_cliente">Nombre:</label>
+            <input type="text" id="nombre_cliente" name="nombre_cliente" required>
+        </div>
+        <div>
+            <label for="apellido_cliente">Apellido:</label>
+            <input type="text" id="apellido_cliente" name="apellido_cliente" required>
+        </div>
+        <div>
+            <label for="direccion_cliente">Dirección:</label>
+            <input type="text" id="direccion_cliente" name="direccion_cliente" required>
+        </div>
+        <div>
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <button type="submit" class="button">Generar Recibo PDF</button>
+    </form>
     <div class="container">
         <div class="title">Carrito de Compras</div>
         @if (session('carrito') && count(session('carrito')) > 0)
@@ -128,6 +148,7 @@
                     <td>
                         <form action="{{ route('carrito.modificar', $id) }}" method="POST" class="form-inline">
                             @csrf
+                            @method('PUT')
                             <input type="number" name="cantidad" value="{{ $producto['cantidad'] }}" min="1" required>
                             <button type="submit" class="button">Actualizar</button>
                         </form>
