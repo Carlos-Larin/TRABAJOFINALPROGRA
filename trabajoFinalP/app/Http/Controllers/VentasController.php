@@ -79,6 +79,26 @@ class VentasController extends Controller
             'direccion' => $request->direccion_cliente,
         ];
 
+        // Registrar las ventas en la base de datos
+        foreach ($carrito as $id => $producto) {
+            Venta::create([
+                'codigo_venta' => 'VENTA-' . uniqid(),
+                'nombre_cliente' => $cliente['nombre'],
+                'apellido_cliente' => $cliente['apellido'],
+                'direccion_cliente' => $cliente['direccion'],
+                'id_producto' => $id,
+                'nombre_producto' => $producto['nombre'],
+                'cantidad_producto' => $producto['cantidad'],
+                'total_venta' => $producto['precio'] * $producto['cantidad'],
+                'fecha_venta' => now(),
+            ]);
+
+            // Actualizar el stock del producto
+            $productoDB = Producto::findOrFail($id);
+            $productoDB->stock_producto -= $producto['cantidad'];
+            $productoDB->save();
+        }
+
         // Calcular el total
         $total = 0;
         foreach ($carrito as $producto) {
@@ -91,13 +111,9 @@ class VentasController extends Controller
         // Enviar el correo con el recibo adjunto
         Mail::to($request->email)->send(new ReciboMailable($cliente, $carrito, $total, $pdf));
 
-        return redirect()->route('ventas.index')->with('success', 'Recibo enviado por correo exitosamente.');
-    }
-    public function destroy($id)
-    {
-        $venta = \App\Models\Venta::findOrFail($id);
-        $venta->delete();
+        // Limpiar el carrito después de registrar la venta
+        session()->forget('carrito');
 
-        return redirect()->route('ventas.index')->with('success', 'Venta eliminada correctamente.');
+        return redirect()->route('ventas.index')->with('success', 'Recibo enviado por correo y venta registrada exitosamente.');
     }
 }
