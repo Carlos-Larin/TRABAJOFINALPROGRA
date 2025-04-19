@@ -12,7 +12,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 89.5vh;
+            height: 100vh;
             background-color: skyblue;
         }
 
@@ -56,9 +56,9 @@
         }
 
         .boton-pago:hover {
-            background-color: red;
+            background-color: skyblue;
             color: white;
-            box-shadow: 0 0 10px red;
+            box-shadow: 0 0 10px skyblue;
         }
 
         .boton-pago img {
@@ -82,9 +82,7 @@
                     <input type="number" required placeholder="CVV">
                 </div>
                 <div>
-                    <button class="boton-pago" type="submit">
-                        <img src="" height="20"> PAGAR
-                    </button>
+                    <button class="boton-pago" type="submit">PAGAR</button>
                 </div>
             </form>
         </div>
