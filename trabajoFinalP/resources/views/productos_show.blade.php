@@ -21,9 +21,9 @@
         }
         .product-image {
             width: 100%;
-            height: 300px;
-            object-fit: cover;
+            max-width: 400px;
             border-radius: 10px;
+            margin-bottom: 20px;
         }
         .product-details {
             margin-top: 20px;
