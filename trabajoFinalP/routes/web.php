@@ -18,6 +18,7 @@ Route::put('productos/{id}', [productosController::class, 'update'])->name('prod
 Route::delete('productos/{id}', [productosController::class, 'destroy'])->name('productos.destroy');
 Route::get('productos/{id}', [productosController::class, 'show'])->name('productos.show');
 
+
 // Ruta para la gestión de ventas
 Route::get('/ventas', function () {
     return view('registroVentas');
@@ -36,3 +37,8 @@ Route::post('ventas', [VentasController::class, 'store'])->name('ventas.store');
 Route::get('ventas', [VentasController::class, 'index'])->name('ventas.index');
 Route::post('ventas/generar-recibo', [VentasController::class, 'generarRecibo'])->name('ventas.generarRecibo');
 Route::delete('ventas/{id}', [VentasController::class, 'destroy'])->name('ventas.destroy');
+
+//Pagos
+Route::get('/pago', function () {
+    return view('pago');
+});
