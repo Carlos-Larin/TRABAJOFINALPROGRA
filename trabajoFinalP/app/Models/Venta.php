@@ -9,10 +9,8 @@ class Venta extends Model
 {
     use HasFactory;
 
-    // Nombre de la tabla asociada
     protected $table = 'tabla_ventas';
 
-    // Campos que se pueden asignar masivamente
     protected $fillable = [
         'codigo_venta',
         'nombre_cliente',
