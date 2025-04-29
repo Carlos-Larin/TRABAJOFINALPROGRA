@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class usuarios extends Model
 {
     //quince años tenia tu hermana
@@ -20,8 +21,9 @@ class usuarios extends Model
     ];
 
     // Si necesitas relaciones, puedes definirlas aquí
-    public function producto()
+    
+}    
+    public function setContraseñaAttribute($value)
     {
-        return $this->belongsTo(Producto::class, '');
+        $this->attributes['contraseña'] = Hash::make($value);
     }
-}
