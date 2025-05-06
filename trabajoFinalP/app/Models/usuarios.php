@@ -20,10 +20,10 @@ class usuarios extends Model
         'contraseña',
     ];
 
-    // Si necesitas relaciones, puedes definirlas aquí
-    
-}    
     public function setContraseñaAttribute($value)
     {
         $this->attributes['contraseña'] = Hash::make($value);
     }
+    // Si necesitas relaciones, puedes definirlas aquí
+    
+}    
