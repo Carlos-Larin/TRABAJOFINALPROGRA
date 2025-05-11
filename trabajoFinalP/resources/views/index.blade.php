@@ -12,7 +12,13 @@
         <div class="nav-buttons">
             <button onclick="window.location.href='{{ route('productos.index') }}'">Productos</button>
             <button onclick="window.location.href='{{ route('ventas.index') }}'">Ventas</button>
+            @if(Auth::check())
             <button onclick="window.location.href='{{ route('carrito.mostrar') }}'">Carrito</button>
+            @endif
+            <button onclick="window.location.href='{{ route('login') }}'">Iniciar Sesion</button>
+            @if(Auth::check())
+                <button onclick="window.location.href='{{ route('logout') }}'">Cerrar Sesión</button>
+            @endif
 
             <button onclick="window.location.href='{{ route('index') }}'">Inicio</button>
         </div>
