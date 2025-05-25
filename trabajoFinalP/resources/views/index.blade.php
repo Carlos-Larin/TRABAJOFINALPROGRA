@@ -10,7 +10,9 @@
     <header>
         <div class="logo">Tienda de electronica TRC</div>
         <div class="nav-buttons">
+            @if(Auth::check())
             <button onclick="window.location.href='{{ route('productos.index') }}'">Productos</button>
+            @endif
             <button onclick="window.location.href='{{ route('ventas.index') }}'">Ventas</button>
             @if(Auth::check())
             <button onclick="window.location.href='{{ route('carrito.mostrar') }}'">Carrito</button>

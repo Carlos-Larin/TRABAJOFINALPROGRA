@@ -23,13 +23,12 @@ class loginController extends Controller
             return back()->withErrors(['email' => 'Usuario no encontrado'])->withInput();
         }
 
-        if (!Hash::check($request->password, $usuario->contraseña)) {
-            return back()->withErrors(['email' => 'Contraseña incorrecta'])->withInput();
+        if (Hash::check($request->password, $usuario->contraseña)) {
+            Auth::login($usuario); // Esto autentica al usuario
+            return redirect('/')->with('success', 'Inicio de sesión exitoso');
         }
 
-        // Guardar usuario en sesión si lo necesitas
-        session(['usuario_id' => $usuario->id]);
-        return redirect('/')->with('success', 'Inicio de sesión exitoso');
+        return back()->withErrors(['email' => 'Contraseña incorrecta'])->withInput();
     }
     public function logout(Request $request)
     {

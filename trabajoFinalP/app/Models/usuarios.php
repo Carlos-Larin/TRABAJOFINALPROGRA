@@ -1,15 +1,12 @@
 <?php
 namespace App\Models;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Hash;
 
-class usuarios extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class usuarios extends Authenticatable
 {
-    //quince años tenia tu hermana
-    use HasFactory;
-    protected $table = 'usuarios'; // nombre de la tabla
-    public $timestamps = true; // si tu tabla no tiene created_at y updated_at
+    protected $table = 'usuarios';
+    public $timestamps = true;
 
     protected $fillable = [
         'nombre_usuario',
@@ -17,4 +14,9 @@ class usuarios extends Model
         'contraseña',
     ];
 
+    // Si tu campo de contraseña se llama diferente a "password":
+    public function getAuthPassword()
+    {
+        return $this->contraseña;
+    }
 }
