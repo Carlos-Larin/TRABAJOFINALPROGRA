@@ -7,6 +7,7 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\VentasController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('index');
@@ -49,19 +50,15 @@ Route::get('/pago', function () {
 
 // Ruta para la gestión de usuarios
 // Ruta para mostrar el formulario de login
-Route::get('/login', function () {
-    return view('login_user');
-})->name('login');
+Route::get('/login', function () {return view('login_user');})->name('login');
 
 // Ruta para procesar el login
-Route::post('/login', [loginController::class, 'login'])->name('login');
+Route::post('/login', [loginController::class, 'login']);
 
 // Ruta para cerrar sesión
-Route::get('/logout', [loginController::class, 'logout'])->name('logout');
+Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 
 // Ruta para mostrar el formulario de registro
-Route::get('/register', function () {
-    return view('register_user');
-})->name('register');
+Route::get('/register', function () {return view('register_user');})->name('register');
 // Ruta para procesar el registro
 Route::post('/register', [RegisterController::class, 'register'])->name('register');

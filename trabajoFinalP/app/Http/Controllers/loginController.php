@@ -16,14 +16,20 @@ class loginController extends Controller
             'password' => 'required',
         ]);
 
-        $user = usuarios::where('correo_electronico', $request->email)->first();
+        $email = trim($request->email); // Elimina espacios
+        $usuario = usuarios::where('correo_electronico', $email)->first();
 
-        if ($user && Hash::check($request->password, $user->contraseña)) {
-            Auth::login($user); // Autentica al usuario
-            return redirect()->route('index')->with('success', 'Bienvenido ' . $user->nombre_usuario); // Redirige al inicio
+        if (!$usuario) {
+            return back()->withErrors(['email' => 'Usuario no encontrado'])->withInput();
         }
 
-        return back()->withErrors(['email' => 'Credenciales incorrectas']);
+        if (!Hash::check($request->password, $usuario->contraseña)) {
+            return back()->withErrors(['email' => 'Contraseña incorrecta'])->withInput();
+        }
+
+        // Guardar usuario en sesión si lo necesitas
+        session(['usuario_id' => $usuario->id]);
+        return redirect('/')->with('success', 'Inicio de sesión exitoso');
     }
     public function logout(Request $request)
     {

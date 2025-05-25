@@ -8,15 +8,13 @@ class usuarios extends Model
 {
     //quince años tenia tu hermana
     use HasFactory;
-    protected $table = 'User';
+    protected $table = 'usuarios'; // nombre de la tabla
+    public $timestamps = true; // si tu tabla no tiene created_at y updated_at
+
     protected $fillable = [
         'nombre_usuario',
         'correo_electronico',
         'contraseña',
     ];
 
-    public function setContraseñaAttribute($value)
-    {
-        $this->attributes['contraseña'] = Hash::make($value);
-    }
-}    
+}
