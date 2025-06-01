@@ -6,9 +6,11 @@
     <title>Recibo de Compra</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #007bff, #323248);
+            background-attachment: fixed;
+            background-size: cover;
         }
         .header {
             text-align: left;

@@ -6,10 +6,11 @@
     <title>RegistroVentas</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
             margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #007bff, #323248);
+            background-attachment: fixed;
+            background-size: cover;
         }
         header {
                 background-color: #007bff;
@@ -18,7 +19,6 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             }
             header .logo {
                 font-size: 20px;

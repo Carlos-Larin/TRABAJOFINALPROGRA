@@ -7,6 +7,21 @@
     <link rel="stylesheet" href="{{ asset('css/productos_default.css') }}">
 </head>
 <body>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #007bff, #323248);
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .header {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+    </style>
+
     <header>
         <div class="logo">Tienda de electronica TRC</div>
         <div class="nav-buttons">

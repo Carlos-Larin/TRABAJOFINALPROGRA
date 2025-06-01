@@ -7,9 +7,11 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
+            background: linear-gradient(to bottom, #007bff, #323248);
+            background-attachment: fixed;
+            background-size: cover;
         }
         .container {
             max-width: 800px;
