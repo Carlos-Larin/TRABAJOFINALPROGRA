@@ -4,7 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Producto</title>
-    <link rel="stylesheet" href="{{ asset('css/estiloPagina.css') }}">
+    <!--<link rel="stylesheet" href="{{ asset('css/estiloPagina.css') }}">-->
+        <style>
+        body {
+            background: #f4f6fa;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            padding: 32px 28px 24px 28px;
+        }
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 24px;
+            text-align: center;
+            color: #007bff;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #222;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #bfc9d4;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #f8fafc;
+            transition: border 0.2s;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        textarea:focus {
+            border: 1.5px solid #007bff;
+            outline: none;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .button {
+            width: 100%;
+            padding: 10px 0;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+        .nav-buttons button {
+            background-color: white;
+            color: #007bff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin-left: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .nav-buttons button:hover {
+            background: #e6f0ff;
+        }
+    </style>
 </head>
 <body>
     <header>
