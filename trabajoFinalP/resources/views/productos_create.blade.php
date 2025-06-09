@@ -111,6 +111,15 @@
     </header>
     <div class="container">
         <div class="title">Agregar Producto</div>
+        @if ($errors->any())
+            <div style="color: red;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ route('productos.store') }}" method="POST">
             @csrf
             <div class="form-group">
