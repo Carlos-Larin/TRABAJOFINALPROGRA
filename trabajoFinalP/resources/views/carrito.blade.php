@@ -94,6 +94,60 @@
             background-color: #0056b3;
             color: white;
         }
+        .form-cliente-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+        .form-cliente {
+            background: #fff;
+            padding: 28px 32px 20px 32px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            max-width: 400px;
+            width: 100%;
+        }
+        .form-cliente .form-group {
+            margin-bottom: 18px;
+        }
+        .form-cliente label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #222;
+        }
+        .form-cliente input[type="text"],
+        .form-cliente input[type="email"] {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #bfc9d4;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #f8fafc;
+            transition: border 0.2s;
+        }
+        .form-cliente input[type="text"]:focus,
+        .form-cliente input[type="email"]:focus {
+            border: 1.5px solid #007bff;
+            outline: none;
+        }
+        .form-cliente .button {
+            width: 100%;
+            padding: 10px 0;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .form-cliente .button:hover {
+            background: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -106,26 +160,28 @@
             <button onclick="window.location.href='{{ route('index') }}'">Inicio</button>
         </div>
     </header>
-    <form action="{{ route('ventas.generarRecibo') }}" method="POST">
-        @csrf
-        <div>
-            <label for="nombre_cliente">Nombre:</label>
-            <input type="text" id="nombre_cliente" name="nombre_cliente" required>
-        </div>
-        <div>
-            <label for="apellido_cliente">Apellido:</label>
-            <input type="text" id="apellido_cliente" name="apellido_cliente" required>
-        </div>
-        <div>
-            <label for="direccion_cliente">Dirección:</label>
-            <input type="text" id="direccion_cliente" name="direccion_cliente" required>
-        </div>
-        <div>
-            <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <button type="submit" class="button">Generar Recibo PDF</button>
-    </form>
+    <div class="form-cliente-container">
+        <form action="{{ route('ventas.generarRecibo') }}" method="POST" class="form-cliente">
+            @csrf
+            <div class="form-group">
+                <label for="nombre_cliente">Nombre:</label>
+                <input type="text" id="nombre_cliente" name="nombre_cliente" required>
+            </div>
+            <div class="form-group">
+                <label for="apellido_cliente">Apellido:</label>
+                <input type="text" id="apellido_cliente" name="apellido_cliente" required>
+            </div>
+            <div class="form-group">
+                <label for="direccion_cliente">Dirección:</label>
+                <input type="text" id="direccion_cliente" name="direccion_cliente" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <button type="submit" class="button">Generar Recibo PDF</button>
+        </form>
+    </div>
     <div class="container">
         <div class="title">Carrito de Compras</div>
         @if (session('carrito') && count(session('carrito')) > 0)
